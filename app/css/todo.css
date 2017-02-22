@@ -1,0 +1,11 @@
+form {
+    display: inline-block;
+}
+.form-group {
+    text-align: center;
+    padding-bottom: 25px;
+}
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}

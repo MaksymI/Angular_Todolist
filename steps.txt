@@ -1,0 +1,21 @@
+﻿npm i gulp -g
+
+npm init
+
+npm i gulp --save-dev
+
+npm i gulp-sass --save-dev
+
+npm i browser-sync --save-dev
+
+npm i -g bower
+(Git must be installed)
+
+bower i angular#1.6.2
+
+bower i bootstrap
+
+
+git init
+git config user.email maksym.izmailov.lv@gmail.com
+

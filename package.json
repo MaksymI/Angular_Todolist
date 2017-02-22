@@ -1,0 +1,24 @@
+{
+  "name": "gulp_angular_todo",
+  "version": "1.0.0",
+  "description": "simple_todo_list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MaksymI/Angular_Todolist.git"
+  },
+  "author": "MaksymI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaksymI/Angular_Todolist/issues"
+  },
+  "homepage": "https://github.com/MaksymI/Angular_Todolist#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}

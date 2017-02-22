@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <title>Simple Todo List App</title>
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="js/todo.js"></script>
+    <link rel="stylesheet" href="css/todo.css">
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap-theme.min.css">-->
+  </head>
+  <body>
+    <h2>Todo</h2>
+    <div ng-controller="TodoListController as todoList">
+      <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+      [ <a href="" ng-click="todoList.archive()">archive</a> ]
+      <ul class="unstyled">
+        <li ng-repeat="todo in todoList.todos">
+          <label class="checkbox">
+            <input type="checkbox" ng-model="todo.done">
+            <span class="done-{{todo.done}}">{{todo.text}}</span>
+          </label>
+        </li>
+      </ul>
+    
+     <form role="form" ng-submit="todoList.addTodo()">
+        <input type="text" class="form-control" placeholder="Your Task" ng-model="todoList.todoText">
+        <input class="btn btn btn-primary" type="submit" value="Add">
+    </form>
+      
+    </div>
+  <div class="form">
+  <div class="input-group">
+    <input type="text" class="form-control">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button">
+        <span class="glyphicon glyphicon-plus"></span> Add Task</button>
+    </span>
+  </div>
+</div>
+<hr/>
+  </body>
+</html>
