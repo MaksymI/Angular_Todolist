@@ -18,4 +18,24 @@ bower i bootstrap
 
 git init
 git config user.email maksym.izmailov.lv@gmail.com
+git config user.name "MaksymI"
+git add .
+
+touch .gitignore
+echo node_modules/ > .gitignore
+git rm -r --cached node_modules
+
+git commit -m 'initial commit'
+
+git remote add origin git://github.com/MaksymI/Angular_Todolist.git
+git remote -v
+
+git remote set-url origin git@github.com:MaksymI/Angular_Todolist.git
+
+git pull origin master - Если мы правим код с нескольких компьютеров,
+ то перед началом работы не забываем «накатить» в локальный репозиторий
+ последнюю версию кода.
+
+git push -u origin master
+
 
