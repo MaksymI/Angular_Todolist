@@ -1,7 +1,6 @@
-var app = angular.module('todoApp', []);
 app.controller('todoListCtrl', function () {
     var todoListCtrl = this;
-    todoListCtrl.todos = [
+    var initTasks = [
         {
             text: 'learn AngularJS',
             done: true
@@ -14,6 +13,8 @@ app.controller('todoListCtrl', function () {
             text: 'start working as junior AngularJS dev',
             done: false
         }];
+    todoListCtrl.todos = initTasks;
+    
     todoListCtrl.addTodo = function () {
         var toPush = {
             text: todoListCtrl.todoText,
@@ -41,5 +42,8 @@ app.controller('todoListCtrl', function () {
                 todoListCtrl.todos.push(todo);
             }
         });
+    };
+    todoListCtrl.reset = function () {
+        todoListCtrl.todos = initTasks;
     };
 });

@@ -38,6 +38,8 @@ git pull origin master - Если мы правим код с нескольки
 
 git push -u origin master
 
-git rm --cached --ignore-unmatch app/libs/ -r
+git rm -r --cached --ignore-unmatch app/libs/ 
+git commit -m "deleted app/libs"
+git push origin master
 
 

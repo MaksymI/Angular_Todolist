@@ -1,9 +1,11 @@
 var gulp       = require('gulp'), // Подключаем Gulp
+    uncss = require('gulp-uncss'), // Подключаем пакет для удаления неиспользуемых стилей CSS
     sass         = require('gulp-sass'), //Подключаем Sass пакет,
-    browserSync  = require('browser-sync'), // Подключаем Browser Sync
     concat       = require('gulp-concat'), // Подключаем gulp-concat (для конкатенации файлов)
-    uglify       = require('gulp-uglifyjs'), // Подключаем gulp-uglifyjs (для сжатия JS)
     cssnano      = require('gulp-cssnano'), // Подключаем пакет для минификации CSS
+    browserSync  = require('browser-sync'), // Подключаем Browser Sync
+    uglify       = require('gulp-uglifyjs'), // Подключаем gulp-uglifyjs (для сжатия JS)
+    
     rename       = require('gulp-rename'), // Подключаем библиотеку для переименования файлов
     del          = require('del'), // Подключаем библиотеку для удаления файлов и папок
     imagemin     = require('gulp-imagemin'), // Подключаем библиотеку для работы с изображениями
@@ -13,10 +15,10 @@ var gulp       = require('gulp'), // Подключаем Gulp
 
 gulp.task('sass', function(){ // Создаем таск Sass
     return gulp.src('app/sass/**/*.sass') // Берем источник
-        .pipe(sass()) // Преобразуем Sass в CSS посредством gulp-sass
-        .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true })) // Создаем префиксы
-        .pipe(gulp.dest('app/css')) // Выгружаем результата в папку app/css
-        .pipe(browserSync.reload({stream: true})) // Обновляем CSS на странице при изменении
+                .pipe(sass()) // Преобразуем Sass в CSS посредством gulp-sass
+                .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true })) // Создаем префиксы
+                .pipe(gulp.dest('app/css')) // Выгружаем результата в папку app/css
+                .pipe(browserSync.reload({stream: true})) // Обновляем CSS на странице при изменении
 });
 
 gulp.task('browser-sync', function() { // Создаем таск browser-sync
@@ -33,16 +35,19 @@ gulp.task('scripts', function() {
         'app/libs/jquery/dist/jquery.min.js', // Берем jQuery
         'app/libs/magnific-popup/dist/jquery.magnific-popup.min.js' // Берем Magnific Popup
         ])
-        .pipe(concat('libs.min.js')) // Собираем их в кучу в новом файле libs.min.js
-        .pipe(uglify()) // Сжимаем JS файл
-        .pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
+                .pipe(concat('libs.min.js')) // Собираем их в кучу в новом файле libs.min.js
+                .pipe(uglify()) // Сжимаем JS файл
+                .pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
 });
 
 gulp.task('css-libs', ['sass'], function() {
     return gulp.src('app/css/libs.css') // Выбираем файл для минификации
-        .pipe(cssnano()) // Сжимаем
-        .pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
-        .pipe(gulp.dest('app/css')); // Выгружаем в папку app/css
+                .pipe(uncss({
+            html: ['app/**/*.html'] // удаляем неиспользуемые стили CSS
+        }))
+                .pipe(cssnano()) // Сжимаем
+                .pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
+                .pipe(gulp.dest('app/css')); // Выгружаем в папку app/css
 });
 
 gulp.task('watch', ['browser-sync', 'css-libs', 'scripts'], function() {
@@ -69,19 +74,19 @@ gulp.task('img', function() {
 gulp.task('build', ['clean', 'img', 'sass', 'scripts'], function() {
 
     var buildCss = gulp.src([ // Переносим библиотеки в продакшен
-        'app/css/main.css',
-        'app/css/libs.min.css'
-        ])
-    .pipe(gulp.dest('dist/css'))
+                        'app/css/main.css',
+                        'app/css/libs.min.css'
+                        ])
+                        .pipe(gulp.dest('dist/css'))
 
     var buildFonts = gulp.src('app/fonts/**/*') // Переносим шрифты в продакшен
-    .pipe(gulp.dest('dist/fonts'))
+                         .pipe(gulp.dest('dist/fonts'))
 
     var buildJs = gulp.src('app/js/**/*') // Переносим скрипты в продакшен
-    .pipe(gulp.dest('dist/js'))
+                      .pipe(gulp.dest('dist/js'))
 
     var buildHtml = gulp.src('app/*.html') // Переносим HTML в продакшен
-    .pipe(gulp.dest('dist'));
+                        .pipe(gulp.dest('dist'));
 
 });
 
