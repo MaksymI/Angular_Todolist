@@ -1,0 +1,23 @@
+{
+  "name": "gulp_angular_todo",
+  "description": "simple_todo_list",
+  "main": "index.js",
+  "authors": [
+    "MaksymI"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/MaksymI/Angular_Todolist",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/libs/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.6.2",
+    "bootstrap": "^3.3.7"
+  }
+}

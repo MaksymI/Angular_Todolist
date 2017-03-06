@@ -5,12 +5,12 @@ app.controller('todoListCtrl', function () {
         {
             text: 'learn AngularJS',
             done: true
-        }
-        , {
+        },
+        {
             text: 'build first AngularJS app',
             done: true
-        }
-        , {
+        },
+        {
             text: 'start working as junior AngularJS dev',
             done: false
         }];
@@ -24,7 +24,7 @@ app.controller('todoListCtrl', function () {
             todoListCtrl.todoText = '';
         } else {
             console.log('input empty');
-        };
+        }
     };
     todoListCtrl.remaining = function () {
         var count = 0;
@@ -37,7 +37,9 @@ app.controller('todoListCtrl', function () {
         var oldTodos = todoListCtrl.todos;
         todoListCtrl.todos = [];
         angular.forEach(oldTodos, function (todo) {
-            if (!todo.done) todoListCtrl.todos.push(todo);
+            if (!todo.done) {
+                todoListCtrl.todos.push(todo);
+            }
         });
     };
 });
