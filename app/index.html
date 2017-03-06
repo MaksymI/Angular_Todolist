@@ -27,7 +27,7 @@
             <hr/>
             <ul class="list-group">
                 <li class="list-group-item clearfix task" ng-repeat="todo in todoListCtrl.todos" ng-class="{disabled: todo.done}">
-                    <label class="lead ">
+                    <label class="lead">
                         <input type="checkbox" ng-model="todo.done"> <span class="done-{{todo.done}}">{{todoListCtrl.todos.indexOf(todo)+1}}) {{todo.text}}</span>
                     </label>
                 </li>
