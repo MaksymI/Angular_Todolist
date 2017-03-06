@@ -38,6 +38,6 @@ git pull origin master - Если мы правим код с нескольки
 
 git push -u origin master
 
-git rm --cached --ignore-unmatch app/libs/
+git rm --cached --ignore-unmatch app/libs/ -r
 
 
